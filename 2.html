@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Navbar</title>    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+* 
+{
+    margin: 0;
+    padding: 0;
+}
+.page-header 
+{
+    background-color: #242582;
+    padding: 1.3rem;
+    display: flex;
+    justify-content: space-between;
+}
+.title 
+{
+   color: white;
+   text-align: center;   
+   margin-left: 1.2rem;
+   
+}
+.nav-bar a
+{
+  color: white;    
+  padding: 12px 14px;
+  cursor: pointer;
+}
+.nav-bar{
+    position: relative;
+}
+.nav-bar a:hover 
+{
+    background-color: #5052db;
+}
+.nav-bar a.active 
+{
+    background-color: #f64c72;
+}
+.menu-icon 
+{
+    color: white;
+    cursor: pointer;
+    display: none;
+    
+}
+.close{
+    display: none;
+    text-align: right;
+    font-size: 35px;
+}
+
+@media screen and (max-width: 700px) 
+{
+   .nav-bar 
+    {
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: #a3a5e5;
+        text-align: center;
+        animation: 1s ease-in-out 0s  prologic;
+        
+    }
+    @keyframes prologic {
+            
+            from {margin-left: -100%;}
+            to {margin-left: 0%}
+            
+            
+        }
+    .close {
+    display: block;
+    text-align: right;
+    font-size: 35px;
+    cursor: pointer;
+    
+    }
+
+    .close.responsive
+    {
+        animation: 1s ease-in-out 5s  prologic1;
+    }
+    @keyframes prologic1 {
+            
+            from {margin: 90deg;}
+            to {margin-bottom: 0%}
+            
+            
+        }
+
+    
+    .nav-bar.responsive 
+    {
+       
+        display: block;
+        
+    }
+    
+    
+    .nav-bar a 
+    {
+      display: block;
+    }
+    .menu-icon 
+    {
+      display: block;     
+    }
+}
+
+
+
+    </style>
+</head>
+<body>
+    <div class="page-header" >
+        <div class="title">
+            <p> Navbar Example </p> 
+        </div>
+        
+        <a id="menu-icon" class="menu-icon" onmouseover="onMenuClick()">
+            <i class="fa fa-bars"></i>
+        </a>
+        
+        <div id="navigation-bar" class="nav-bar">
+            <span class="close" id="closee">&times;</span>
+            <a class="active"> HOME </a>
+            <a> PROFILE </a>
+            <a> ABOUT  </a>
+            <a> SIGN IN </a>
+        </div>      
+        
+    </div>
+
+    <script>
+    function onMenuClick() 
+     {
+        var navbar = document.getElementById('navigation-bar');
+        var responsive_class_name = 'responsive'
+    
+         navbar.classList.toggle(responsive_class_name)
+
+         var closee=document.getElementsByClassName('close')[0];
+         closee.onclick=function(){
+            var responsive_class_name1= 'responsive'
+            navbar.classList.toggle(responsive_class_name)
+         }
+}
+    </script>
+   
+</body>
+</html>

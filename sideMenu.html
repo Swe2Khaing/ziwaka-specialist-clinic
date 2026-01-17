@@ -1,0 +1,307 @@
+<?php
+require 'config.php';
+if(!empty($_SESSION["id"])){
+  $id = $_SESSION["id"];
+  $result = mysqli_query($conn, "SELECT * FROM user WHERE id = $id");
+  $row = mysqli_fetch_assoc($result);
+}
+else{
+  header("Location: login.php");
+}
+?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<style>
+  .header{
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    color: aliceblue;
+    align-items: center;
+     }
+
+.modal_box
+{
+  height: 100%;
+  width: 0;
+  position: fixed;  
+  top: 0;
+  left: 0;
+  background-color: rgb(239, 249, 244);
+  overflow: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+   
+}
+.close_btn {
+  position: absolute;
+  top: 0px;
+  right: 15px;
+  color: #14f16d;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.close_btn:hover,.close_btn:focus 
+{
+  color: rgb(231, 15, 15);  
+}
+
+.left span{
+  color:white;
+  font-size: 100px;
+}
+#small_img{
+  size: 100px;
+  color: red;
+}
+.dropdown-toggle{
+  font-size: 30px;
+  color: rgb(225, 49, 49);
+}
+.left{
+  font-size: 50px;
+}
+.menu{
+  width: 100%;
+  height:100% ;
+  background-color: rgb(168, 248, 248);    
+}
+.dropdown{
+  margin-right:50px;
+}
+h1{
+  color: #65c454;
+  padding: 20px;
+  font-weight: 900;
+
+}
+.link_menu{
+  position: absolute;
+  top:9%;
+  width: 100%;
+}
+.link_menu>a
+{
+  display: block;
+  padding: 10px 12px;
+  background-color: rgb(239, 242, 244);
+  border-bottom: 1px solid grey;
+  text-align: center;
+  color: cadetblue;
+  text-decoration: none;
+}
+.link_menu>a:hover{
+  color: crimson;
+  background-color: beige;
+}
+
+
+.material-icons{
+  cursor: pointer;
+}
+
+
+.body{
+  background-color: rgb(66, 146, 189);
+}
+@media screen and (max-width:500px)
+{
+
+.modal_box
+{
+  width: 200px;
+  left:0%;  
+   
+}
+  
+}
+.logo{
+  
+  width: 80px;
+  height: 80px;
+  border-radius: 50px;
+}
+.image{
+  display: flex;
+  justify-content: space-between;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="container-fluid header">
+
+  <div class="modal_box" id="modal_box">
+
+    <span class="close_btn" >&times;</span>
+  
+    <div class="menu"> 
+      
+      <div class="link_menu"> 
+        <a href="">Home</a>
+        <a href="">Contact</a>
+        <a href="">Service</a>
+        <a href="">About</a>
+     </div>  
+    
+    </div>
+  </div>
+  
+<div class="left">
+  <span id="small_img" class="material-icons" style="font-size:48px;" onclick="myfun()"> menu</span>
+</div>
+
+<div class="image">
+<a class="" href="#">
+  <img src="img/ziwaka.jpg" alt="logo" class="logo mt-2">
+</a>
+<h1>ဇီဝက အထူးကုဆေးခန်း</h1>
+</div>
+<div class="dropdown right">        
+          
+    <span class="h4 text-info"><?php echo $row["name"]; ?></span>  <a href="#" class="dropdown-toggle " data-toggle="dropdown" > <i class="fa fa-user " aria-hidden="true"></i></a>
+     
+     <ul class="dropdown-menu">
+         <li>
+         <a href="logout.php" class="dropdown-item text-danger">Logout <i class='fas fa-sign-out-alt'></i> </a>
+         </li>
+     </ul>
+ 
+     </div>
+  
+</nav>
+
+</div>
+
+</div>
+
+
+<div class=" container-fluid body" id="body">
+
+  <div class="row flex-column flex-lg-row pt-3">
+        
+    <div class="col">
+    <div class="card mb-4">
+    <div class="card-body">
+    <h3 class="card-title h2">1,250</h3>
+    <span class="text-info">
+    <i class="fas fa-chart-line"></i>
+    Hospital Staff
+    </span>
+    </div>
+    </div>
+    </div>
+    <div class="col">
+    <div class="card mb-3">
+    <div class="card-body">
+    <h3 class="card-title h2">8,210</h3>
+    <span class="text-success">
+    <i class="fas fa-chart-line"></i>
+    Doctors
+    </span>
+    </div>
+    </div>
+    </div>
+    <div class="col">
+    <div class="card mb-3">
+    <div class="card-body">
+    <h3 class="card-title h2">12,560</h3>
+    <span class="text-success">
+    <i class="fas fa-chart-line"></i>
+    Patients
+    </span>
+    </div>
+    </div>
+    </div>
+    <div class="col">
+    <div class="card mb-3">
+    <div class="card-body">
+    <h3 class="card-title h2">102,250</h3>
+    <span class="text-success">
+    <i class="fas fa-chart-line"></i>
+    Yearly visitors
+    </span>
+    </div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+
+<script>
+
+  function myfun()
+  {
+    var modal = document.getElementById('modal_box');
+    var img=document.getElementById('small_img');
+  
+    modal.style.width = "150px";
+    document.getElementById("body").style.marginLeft = "150px";
+    img.style.opacity=0;
+  
+    var span = document.getElementsByClassName("close_btn")[0];
+  
+    span.onclick = function() 
+    { 
+      modal.style.width = "0px";
+      document.getElementById("body").style.marginLeft = "0px";
+      img.style.opacity=1;      
+    }
+  
+  }
+  function fun2()
+  {
+  var x = document.getElementById("dropdown");
+  if (x.style.display === "none") 
+  {
+    x.style.display = "block";
+  } 
+  else 
+  {
+    x.style.display = "none";
+  }
+      
+  } 
+  
+  </script>
+
+<script>
+  function myFunction(x) 
+  {
+    var modal = document.getElementById('modal_box');
+    var body = document.getElementById('body');
+    if (x.matches) 
+    {
+      modal.style.width = "0px";
+      document.body.style.backgroundColor = "yellow";
+    } 
+    else 
+    {
+     document.body.style.backgroundColor = "pink";
+    }
+  }
+  
+  var x = window.matchMedia("(max-width: 500px)")
+  myFunction(x) // Call listener function at run time
+  x.addListener(myFunction) // Attach listener function on state changes
+  </script>
+
+
+
+</body>
+</html>
